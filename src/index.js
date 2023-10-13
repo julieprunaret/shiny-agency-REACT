@@ -4,8 +4,9 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Survey from './pages/Survey';
 import Header from './components/Header/Header';
-import ClientForm from './components/ClientForm/ClientForm';
-import FreelanceForm from './components/FreelanceForm/FreelanceForm';
+import Error from './components/Error/Error';
+import Results from './pages/Results/Results';
+import Freelances from './pages/Freelances/Freelances';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,13 +16,10 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         {/* /survey */}
-        <Route path="/survey" element={<Survey />}>
-          {/* Nous imbriquons nos composants dans survey */}
-          {/* /survey/client */}
-          <Route path="client" element={<ClientForm />} />
-          {/* /survey/freelance */}
-          <Route path="freelance" element={<FreelanceForm />} />
-        </Route>
+        <Route path="/survey/:questionNumber" element={<Survey />} />
+        <Route path="/results" element={<Results />} />
+        <Route path="/freelances" element={<Freelances />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   </React.StrictMode>,
