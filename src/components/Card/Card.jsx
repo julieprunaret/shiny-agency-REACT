@@ -9,13 +9,17 @@ function Card({ label, title, picture }) {
     </div>
   );
 }
-Card.defaultProps = {
-  title: 'Mon titre par défaut',
-};
+
 Card.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  picture: PropTypes.string,
+  picture: PropTypes.string.isRequired,
+}
+
+Card.defaultProps = {
+  title: '',
+  label: '',
+  picture: 'DefaultPicture'
 };
 
 export default Card;

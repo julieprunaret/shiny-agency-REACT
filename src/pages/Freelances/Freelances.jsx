@@ -9,7 +9,7 @@ const freelanceProfiles = [
   },
   {
     name: 'John Doe',
-    jobTitle: 'Developpeur frontend',
+    jobTitle: 'Développeur frontend',
     picture: DefaultPicture,
   },
   {
