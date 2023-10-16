@@ -7,11 +7,27 @@ import Header from './components/Header/Header';
 import Error from './components/Error/Error';
 import Results from './pages/Results/Results';
 import Freelances from './pages/Freelances/Freelances';
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    }
+    body {
+      width: 90%;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+`
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
+    <GlobalStyle />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
