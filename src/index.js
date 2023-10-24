@@ -6,7 +6,7 @@ import Survey from './pages/Survey/Survey';
 import Header from './components/Header/Header';
 import Footer from './components/footer/footer';
 import Error from './components/Error/Error';
-import Results from './pages/Results/Results';
+import Results from './pages/Results';
 import Freelances from './pages/Freelances/Freelances';
 import GlobalStyle from './utils/style/GlobalStyle';
 import { SurveyProvider, ThemeProvider } from './utils/context';
