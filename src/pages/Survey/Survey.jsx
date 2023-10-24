@@ -1,8 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Loader } from '../../utils/style/Atoms';
+import { SurveyContext } from '../../utils/context';
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -62,6 +63,16 @@ function Survey() {
   const [surveyData, setSurveyData] = useState({});
   const [isDataLoading, setDataLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { saveAnswers, answers } = useContext(SurveyContext);
+
+  function saveReply(answer) {
+    saveAnswers({ [questionNumber]: answer });
+    console.log(answers);
+  }
+
+  useEffect(() => {
+    console.log(answers);
+  }, [saveReply]);
 
   // useEffect(() => {
   //   setDataLoading(true);
@@ -104,8 +115,18 @@ function Survey() {
         <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
       )}
       <ReplyWrapper>
-        <ReplyBox>Oui</ReplyBox>
-        <ReplyBox>Non</ReplyBox>
+        <ReplyBox
+          onClick={() => saveReply(true)}
+          isSelected={answers[questionNumber] === true}
+        >
+          Oui
+        </ReplyBox>
+        <ReplyBox
+          onClick={() => saveReply(false)}
+          isSelected={answers[questionNumber] === false}
+        >
+          Non
+        </ReplyBox>
       </ReplyWrapper>
       <LinkWrapper>
         <Link to={`/survey/${previous}`}>Previous</Link>
