@@ -69,8 +69,6 @@ function Results() {
     `http://localhost:8000/results?${queryParams}`
   );
 
-  console.log('===== data =====', data);
-
   const resultsData = data?.resultsData;
 
   return (
@@ -108,8 +106,6 @@ function Results() {
                   <p>{result.description}</p>
                 </JobDescription>
               ))}
-            {resultsData &&
-              resultsData.map((result, index) => console.log(result))}
           </DescriptionWrapper>
         </ResultsContainer>
       )}

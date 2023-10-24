@@ -4,7 +4,7 @@ import colors from '../../utils/style/colors';
 import { useEffect, useContext } from 'react';
 import { Loader } from '../../utils/style/Atoms';
 import { SurveyContext } from '../../utils/context';
-import { useFetch } from '../../utils/hooks';
+import { useFetch, useTheme } from '../../utils/hooks';
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -15,16 +15,18 @@ const SurveyContainer = styled.div`
 const QuestionTitle = styled.h2`
   text-decoration: underline;
   text-decoration-color: ${colors.primary};
+  color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `;
 
 const QuestionContent = styled.span`
   margin: 30px;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `;
 
 const LinkWrapper = styled.div`
   padding-top: 30px;
   & a {
-    color: black;
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
   }
   & a:first-of-type {
     margin-right: 20px;
@@ -65,7 +67,7 @@ function Survey() {
   // const [isDataLoading, setDataLoading] = useState(false);
   // const [error, setError] = useState(null);
   const { saveAnswers, answers } = useContext(SurveyContext);
-
+  const { theme } = useTheme();
   const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`);
   const { surveyData } = data;
 
@@ -112,11 +114,11 @@ function Survey() {
 
   return (
     <SurveyContainer>
-      <QuestionTitle>Question {questionNumber}</QuestionTitle>
+      <QuestionTitle theme={theme}>Question {questionNumber}</QuestionTitle>
       {isLoading ? (
         <Loader />
       ) : (
-        <QuestionContent>
+        <QuestionContent theme={theme}>
           {surveyData ? surveyData[questionNumber] : console.log('bah non')}
         </QuestionContent>
       )}
@@ -134,7 +136,7 @@ function Survey() {
           Non
         </ReplyBox>
       </ReplyWrapper>
-      <LinkWrapper>
+      <LinkWrapper theme={theme}>
         <Link to={`/survey/${previous}`}>Previous</Link>
         {surveyData && surveyData[questionNumberInt + 1] ? (
           <Link to={`/survey/${next}`}>Suivant</Link>
