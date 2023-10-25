@@ -52,8 +52,16 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 
-function formatParams(answers) {
+export function formatJobList(title, listLength, index) {
+  if (index === listLength - 1) {
+    return title;
+  }
+  return `${title},`;
+}
+
+export function formatParams(answers) {
   const answerNumber = Object.keys(answers);
+
   return answerNumber.reduce((previousParams, answerNumber, index) => {
     const isFirstAnswer = index === 0;
     const separator = isFirstAnswer ? '' : '&';
@@ -87,11 +95,24 @@ function Results() {
                   key={`result-title-${index}-${result.title}`}
                   theme={theme}
                 >
+                  {formatJobList(result.title, resultsData.length, index)}
+                  {console.log(result.title)}
+                </JobTitle>
+              ))}
+          </ResultsTitle>
+          {/* <ResultsTitle theme={theme}>
+            Les compétences dont vous avez besoin :
+            {resultsData &&
+              resultsData.map((result, index) => (
+                <JobTitle
+                  key={`result-title-${index}-${result.title}`}
+                  theme={theme}
+                >
                   {result.title}
                   {index === resultsData.length - 1 ? '' : ','}
                 </JobTitle>
               ))}
-          </ResultsTitle>
+          </ResultsTitle> */}
           <StyledLink $isFullLink to="/freelances">
             Découvrez nos profils
           </StyledLink>
