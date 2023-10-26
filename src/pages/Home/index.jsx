@@ -58,7 +58,7 @@ function Home() {
           <StyledLink to="/survey/1" $isFullLink>
             Faire le test
           </StyledLink>
-          {sum(40, 2)}
+          {/* {sum(40, 2)} */}
         </LeftCol>
         <Illustration src={HomeIllustration} />
       </HomeContainer>
